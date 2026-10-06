@@ -36,4 +36,11 @@ public class StudentController {
         return ResponseEntity.status(HttpStatus.OK).body(student);
     }
 
+    @PostMapping("/update/{id}")
+    public ResponseEntity<Student> updateStudent(@PathVariable Long id, @RequestBody Student student) {
+        Student resStudent = studentService.updateStudent(id, student);
+        if (resStudent == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.status(HttpStatus.OK).body(resStudent);
+    }
+
 }
